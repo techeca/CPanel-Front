@@ -17,9 +17,6 @@ You may also see any lint errors in the console.
 
 ### `Front y Panel`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ![web-usingFlowbite](https://user-images.githubusercontent.com/53408118/187082710-2c94f09f-8335-4888-99b9-cb17c3f6e1fe.png)
 ![web-usingFlowbite-frontend-editor](https://user-images.githubusercontent.com/53408118/187083736-444d5b46-ab1c-45f0-ab59-c2f4182526bf.png)
 
