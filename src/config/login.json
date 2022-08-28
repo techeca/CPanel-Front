@@ -1,0 +1,30 @@
+{
+  "mainTitle":"Sign in to your account",
+  "inputs":[
+    {
+      "title":"Your email",
+      "name":"email",
+      "type":"email",
+      "placeholder":"name@company.com",
+      "required":"true"
+    },
+    {
+      "title":"Password",
+      "name":"password",
+      "type":"password",
+      "placeholder":"••••••••",
+      "required":"true"
+    },
+    {
+      "title":"Remember me",
+      "name":"remember",
+      "type":"checkbox",
+      "required":""
+    }
+  ],
+  "accepTerm":"I accept the",
+  "recoverLinkText":"Forgot password?",
+  "butonText":"Sign up",
+  "havaAccText":"Don’t have an account yet?",
+  "registerLinkText":"Register"
+}

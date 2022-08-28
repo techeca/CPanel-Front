@@ -1,21 +1,19 @@
 .App {
-  text-align: center;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  justify-content: space-between;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-body {
+  display: flex;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +22,116 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header > nav > a {
+  text-decoration: none;
+  color: gray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navegacion {
+  margin-bottom: 6px;
+}
+
+.sidebar {
+  width: 256px;
+  display: flex;
+  flex-direction: column;
+}
+
+.minSidebar {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 80vh;
+}
+
+.piePagina {
+  padding-top: 6px;
+}
+
+li > a {
+  padding: 3px;
+}
+
+.h-full{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#dashboard {
+  display: flex;
+  height: inherit;
+   margin-left: 3px;
+}
+
+.carTest1 {
+  margin-left: 9px;
+  margin-right: 9px;
+  margin-bottom: 18px;
+}
+
+#alertF.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/*Ribbon*/
+[class^=ribbon-] {
+  position: relative;
+}
+[class^=ribbon-]:before, [class^=ribbon-]:after {
+  content: "";
+  position: absolute;
+}
+
+.ribbon-1 {
+  width: 150px;
+  height: 40px;
+  left: -8px;
+}
+.ribbon-1:before {
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid #434c59;
+  border-left: 8px solid transparent ;
+  top: -8px;
+}
+.ribbon-1:after {
+  height: 0;
+  width: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 15px solid #374151;
+  right: -15px;
+}
+
+
+/*scrollbar*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1f2937 white;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #1f2937;
 }
