@@ -27,8 +27,6 @@ export default function UserPanel(){
     }
   }, [isLogged, navigation])
 
-
-
   return (
     <>
     {!isLogged && loading ?

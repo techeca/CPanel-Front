@@ -12,7 +12,7 @@ export default function MenuIzquierdo({sideCategorias}){
   //const testele = document.querySelector('[aria-label="cpanel-sidebar"]')
   //console.log()
 
-  window.addEventListener('resize', function(event){
+  /*window.addEventListener('resize', function(event){
       let newWidth = window.innerWidth;
       //var newHeight = window.innerHeight;
       if(newWidth < 1160 && sidebarAbierto){
@@ -21,16 +21,42 @@ export default function MenuIzquierdo({sideCategorias}){
       if(newWidth > 1161 && !sidebarAbierto){
         esconderSidebar()
       }
-  });
+  });*/
 
   function esconderSidebar(){
-    const sidebarContainer = document.querySelector('[aria-label="cpanel-sidebar"]') ? document.querySelector('[aria-label="cpanel-sidebar"]') : false
+    //const sidebarContainer = document.querySelector('[aria-label="cpanel-sidebar"]') ? document.querySelector('[aria-label="cpanel-sidebar"]') : false
+    const sidebarContainer = document.getElementById('testDraw');
     if(sidebarAbierto && sidebarContainer){
       sidebarContainer.style.width = '50px';
+      //sidebarContainer.classList.add('closeMenuCpanel')
+      //sidebarContainer.classList.remove('openMenuCpanel')
+      //sidebarContainer.classList.add('hidden');
       setSidebarAbierto(false)
     }
     if(!sidebarAbierto && sidebarContainer) {
       sidebarContainer.style.width = '256px';
+      //sidebarContainer.classList.add('openMenuCpanel')
+      //sidebarContainer.classList.remove('closeMenuCpanel')
+      setSidebarAbierto(true)
+    }
+  }
+
+  function testNewShowSidebar(){
+    //const targetEl = document.querySelector('[aria-label="cpanel-sidebar"]')
+    const targetEl = document.getElementById('testDraw');
+    console.log(targetEl.classList.contains('openMenuCpanel'))
+
+    if(sidebarAbierto){
+      //si está abierta
+      targetEl.classList.remove('openMenuCpanel') //sacamos clase con animación para abrir
+      //blocker.classList.add('hidden')          //escondemos bloqueador de contenido
+      targetEl.classList.add('closeMenuCpanel')     //agregamos clase con animacion para esconder
+      setSidebarAbierto(false)
+    }else {
+      //está cerrado
+      targetEl.classList.add('openMenuCpanel')    //agregamos clase con animación para abrir
+      //blocker.classList.remove('hidden')       //mostramos bloqueador de contenido
+      targetEl.classList.remove('closeMenuCpanel')  //quitamos clase con animacion para esconder
       setSidebarAbierto(true)
     }
   }
@@ -72,14 +98,14 @@ export default function MenuIzquierdo({sideCategorias}){
 
   useEffect(() => {
     if(!isLogged) {
-      noSidebar()
+      //noSidebar()
     }
   }, [isLogged])
 
 
   return(
-    <div className="w-fit h-auto">
-    <aside className="w-64" aria-label="cpanel-sidebar">
+    <div  className="w-fit h-auto">
+    <aside id='testDraw' className='w-64' aria-label="cpanel-sidebar">
        <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800" style={{overflow:'hidden'}}>
           <ul className="space-y-2">
              {sideCategorias.map((sideC) =>
@@ -105,8 +131,8 @@ export default function MenuIzquierdo({sideCategorias}){
           <ul className="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
              <li>
 
-                <Link to="/cpanel/settings" className={`flex items-center ${sidebarAbierto ? 'p-2' : ''} text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group`}>
-                   <AdjustmentsIcon className='w-6 h-6 transition duration-75' />
+                <Link to="/cpanel/settings" className={`flex items-center  text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group`}>
+                   <AdjustmentsIcon className={`w-6 h-6 transition duration-75 ${sidebarAbierto ? '' : 'expandirSvg'}`} />
                    <span className={`ml-3 ${sidebarAbierto ? '' : 'hidden'}`}>Settings</span>
                 </Link>
              </li>

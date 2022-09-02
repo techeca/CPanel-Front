@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'flowbite-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import FormLogin from './FormLogin'
+import { userService } from '../../services'
 
 export default function Login(){
+  let navigate = useNavigate()
+
+  useEffect(() =>{
+    if(userService.userValue){
+      navigate('/', {replace: true});
+    }else {
+      //setLoading(false)
+    }
+  }, [navigate])
 
   return(
     <section className="w-full">
