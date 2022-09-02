@@ -5,8 +5,8 @@ Repositorio de [API](http://#)\
 
 - React
 - react-router-dom
-- react-hook-form *
-- yup *
+- react-hook-form
+- yup
 - tailwindCSS
 - Flowbite
 

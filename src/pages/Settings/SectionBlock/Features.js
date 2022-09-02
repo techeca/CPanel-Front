@@ -93,15 +93,13 @@ export default function Features({sectionEdit, featuresValues, showModal, edit})
         <>
           <DrawerTitle showModal={showModal} modalValues={featuresValues.mainTitle} section={sectionEdit} />
           <DrawerDescription showModal={showModal} modalValues={featuresValues.secondTitle} section={sectionEdit} />
-
           {featuresValues.items.map((feaT, i) =>
-
             <div key={`dwt-features-${i}`}>
               <DrawerTitle showModal={showModal} modalValues={feaT.name} section={sectionEdit} dwi={i} />
               <DrawerDescription showModal={showModal} modalValues={feaT.description} section={sectionEdit} dwd={i} />
             </div>
           )}
-
+          
         </>
          :
         <></>
