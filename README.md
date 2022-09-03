@@ -8,7 +8,6 @@ Repositorio de [API](https://github.com/techeca/API_Cpanel)
 - react-hook-form
 - yup
 - tailwindCSS
--
 - Flowbite
 
 Autorización con JSON Web Token (podría cambiar a Auth0)
@@ -27,5 +26,6 @@ You may also see any lint errors in the console.
 
 ### `Front y Panel`
 
+[DEMO](https://cpanel-front.onrender.com)
 ![web-usingFlowbite](https://user-images.githubusercontent.com/53408118/187082710-2c94f09f-8335-4888-99b9-cb17c3f6e1fe.png)
 ![web-usingFlowbite-frontend-editor](https://user-images.githubusercontent.com/53408118/187083736-444d5b46-ab1c-45f0-ab59-c2f4182526bf.png)
