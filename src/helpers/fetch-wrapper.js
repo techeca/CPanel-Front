@@ -2,8 +2,8 @@
 import { userService } from '../services';
 
 //API HOST
-//Moverla, (pero no se a donde)  
-export const URL_API = {apiUrl:'http://localhost:3001'};
+//Moverla, (pero no se a donde)
+export const URL_API = {apiUrl:'https://cpanel-api.onrender.com'};
 
 export const fetchWrapper = {
   get,
