@@ -3,7 +3,6 @@ import Banner from './Banner'
 import Features from './Features'
 import Team from './Team'
 import Newsletter from './Newsletter'
-import ModalTitle from '../ModalTitle'
 
 export default function Block({sectionEdit, blockValues, editSection}){
   //console.log(blockValues)
@@ -15,16 +14,18 @@ export default function Block({sectionEdit, blockValues, editSection}){
     switch (blockValues.section.toLowerCase()) {
       case 'banner':
         return <Banner sectionEdit={sectionEdit} bannerValues={blockValues} showModal={showModal} edit={editSection} />
-        break;
+        //break;
       case 'features':
         return <Features sectionEdit={sectionEdit} featuresValues={blockValues} showModal={showModal} edit={editSection} />
-        break;
+        //break;
       case 'team':
         return <Team sectionEdit={sectionEdit} teamValues={blockValues} showModal={showModal} edit={editSection} />
-        break;
+        //break;
       case 'newsletter':
         return <Newsletter sectionEdit={sectionEdit} newsletterValues={blockValues} showModal={showModal} edit={editSection} />
-        break;
+        //break;
+      default:
+        return console.log('houston, tenemos problemas')
     }
   }
 

@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import MenuIzquierdo from '../../components/MenuIzquierdo'
+//import MenuIzquierdo from '../../components/MenuIzquierdo'
 import Loading from '../../components/Loading'
 import { Card, Button } from 'flowbite-react'
-import { ChartPieIcon, ViewBoardsIcon, InboxIcon, UserIcon, ShoppingBagIcon, ArrowSmRightIcon, TableIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline'
+import { ViewBoardsIcon, UserIcon } from '@heroicons/react/outline'
 import useAuth from '../../hooks/useAuth'
-import useAlert from '../../hooks/useAlert'
+//import useAlert from '../../hooks/useAlert'
+import { contentService } from '../../services'
 
 export default function CPanel(){
   let navigation = useNavigate()
-  const {isLogged, isLoading} = useAuth()
+  const {isLogged} = useAuth()
   const [loading, setLoading] = useState(true)
-  const { setMessage } = useAlert();
+  const [webStats, setWebStats] = useState('')
+//  const { setMessage } = useAlert();
 
 //se debe sacer si se quiere entrar desde ex: locahost:3000/cpanel
   useEffect(() => {
-    if(!isLogged) {
-      navigation('/login', {replace: true});
-      setMessage('You must login before enter CPanel')
-    }
-  }, [isLogged, navigation])
+      contentService.getStatsWeb()
+      .then(res => setWebStats(res))
+  //    navigation('/login', {replace: true});
+    //  setMessage('You must login before enter CPanel')
+  }, [])
+
+  if(isLogged && loading){setLoading(false)}
+  console.log(webStats)
 
   return (
     <>
@@ -36,7 +41,7 @@ export default function CPanel(){
               <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginTop:'9px'}}>
                 <UserIcon className="flex justify-end h-16 w-16 tracking-tight text-gray-900 dark:text-white"/>
                 <h5 className="flex justify-end text-6xl tracking-tight text-gray-900 dark:text-white">
-                  100
+                  {webStats.totalUsers}
                 </h5>
               </div>
             </Card>
@@ -55,7 +60,7 @@ export default function CPanel(){
             </Card>
           </div>
           <div className='carTest1'>
-            <Card  className='' style={{minHeight:'200px', display:'flex', minHeight:'100%'}}>
+            <Card  className='' style={{display:'flex', minHeight:'100%'}}>
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Customization
               </h5>

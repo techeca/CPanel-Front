@@ -1,128 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import Loading from '../../components/Loading'
 import { Card, Button } from 'flowbite-react'
-import flowbite from 'flowbite'
-import { ChartPieIcon, ViewBoardsIcon, InboxIcon, UserIcon, ShoppingBagIcon, ArrowSmRightIcon, TableIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline'
-import useAuth from '../../hooks/useAuth'
-import useAlert from '../../hooks/useAlert'
+//import useAuth from '../../hooks/useAuth'
+//import useAlert from '../../hooks/useAlert'
 import { contentService } from '../../services'
-import ModalTitle from './ModalTitle'
-import ModalDescription from './ModalDescription'
-import ModalImage from './ModalImage'
-import ModalButton from './ModalButton'
 //import Banner from './SectionBlock/Banner'
 import Block from './SectionBlock/Block'
 
 export default function Settings(){
-  let navigation = useNavigate()
-  const {isLogged, isLoading} = useAuth()
-  const [loading, setLoading] = useState(true)
-  const { setMessage } = useAlert()
-  const [sectionEdit, setSectionEdit] = useState('')  //guarda la seccion que vamos a editar
-  const [webContent, setWebContent] = useState('')  //secciones (banner, features, team, etc)
-  const modalTitleBannerValues = {type:'title', text:'CPanel tool for users, etc, etc.', colors:{dark:'black', light:'white'}, fontStyle:'Arial', section:'banner' }
+  //const { isLogged } = useAuth()
+  const [ loading, setLoading ] = useState(true)
+  //const { setMessage } = useAlert()   //alertas pero en este punto deberia agregar los otros mensajes :p
+  const [ sectionEdit, setSectionEdit ] = useState('')  //guarda la seccion que vamos a editar
+  const [ webContent, setWebContent ] = useState('')  //secciones (banner, features, team, etc)
 
-  function showModalTitle(type, section){
-    const targetEl = document.getElementById(`drawer-${type}-${section}`);
-    const blocker = document.getElementById('contentBlocker');
-    //Si tiene la clase la agrega, si no, la quita
-
-    if(targetEl.classList.contains('slide-right')){
-      //si está abierta
-      targetEl.classList.remove('slide-right') //sacamos clase con animación para abrir
-      blocker.classList.toggle('hidden')          //escondemos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "auto";
-      targetEl.classList.add('slide-left')     //agregamos clase con animacion para esconder
-    }else {
-      //está cerrado
-      targetEl.classList.add('slide-right')    //agregamos clase con animación para abrir
-      blocker.classList.toggle('hidden')       //mostramos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "hidden";
-      targetEl.classList.remove('slide-left')  //quitamos clase con animacion para esconder
-    }
-
-  }
-
-  function showModalDescriptionBanner(){
-    const targetEl = document.getElementById('drawerDescriptionBanner');
-    const blocker = document.getElementById('contentBlocker');
-    //Si tiene la clase la agrega, si no, la quita
-    if(targetEl.classList.contains('slide-right')){
-      //si está abierta
-      targetEl.classList.remove('slide-right') //sacamos clase con animación para abrir
-      blocker.classList.add('hidden')          //escondemos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "auto";
-      targetEl.classList.add('slide-left')     //agregamos clase con animacion para esconder
-    }else {
-      //está cerrado
-      targetEl.classList.add('slide-right')    //agregamos clase con animación para abrir
-      blocker.classList.remove('hidden')       //mostramos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "hidden";
-      targetEl.classList.remove('slide-left')  //quitamos clase con animacion para esconder
-    }
-
-  }
-
-  function showModalImageBanner(){
-    const targetEl = document.getElementById('drawerImageBanner');
-    const blocker = document.getElementById('contentBlocker');
-    //Si tiene la clase la agrega, si no, la quita
-    if(targetEl.classList.contains('slide-right')){
-      //si está abierta
-      targetEl.classList.remove('slide-right') //sacamos clase con animación para abrir
-      blocker.classList.add('hidden')          //escondemos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "auto";
-      targetEl.classList.add('slide-left')     //agregamos clase con animacion para esconder
-    }else {
-      //está cerrado
-      targetEl.classList.add('slide-right')    //agregamos clase con animación para abrir
-      blocker.classList.remove('hidden')       //mostramos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "hidden";
-      targetEl.classList.remove('slide-left')  //quitamos clase con animacion para esconder
-    }
-
-  }
-
-  function showModalButtonBanner(){
-    const targetEl = document.getElementById('drawerButtonBanner');
-    const blocker = document.getElementById('contentBlocker');
-    //Si tiene la clase la agrega, si no, la quita
-    if(targetEl.classList.contains('slide-right')){
-      //si está abierta
-      targetEl.classList.remove('slide-right') //sacamos clase con animación para abrir
-      blocker.classList.add('hidden')          //escondemos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "auto";
-      targetEl.classList.add('slide-left')     //agregamos clase con animacion para esconder
-    }else {
-      //está cerrado
-      targetEl.classList.add('slide-right')    //agregamos clase con animación para abrir
-      blocker.classList.remove('hidden')       //mostramos bloqueador de contenido
-      document.getElementsByTagName('html')[0].style.overflow = "hidden";
-      targetEl.classList.remove('slide-left')  //quitamos clase con animacion para esconder
-    }
-
-  }
-
-  async function getWebData(){
-    await contentService.getContentHome().then(res => setWebContent(res))
-  }
-
-  //Cambia la seccion seleccionada a editar
+  //Cambia la seccion a editar
   function editSection(section){
     if(sectionEdit === section){
       setSectionEdit('')
     }else {
       setSectionEdit(section)
-      //contentService.getContentHome().then(res => setSectionEdit(res))
     }
   }
 
-//ya no es necesario por que los está tomando Auth0, ahí están las rutas públicas, el resto quedan bloqueada a menos que exista el objeto userService.userValue
 useEffect(() => {
     contentService.getContentHome()
     .then(res => setWebContent(res))
-    //.then(localStorage.setItem('',''))
 }, [])
 
 if(webContent && loading){setLoading(false)}
@@ -149,214 +52,23 @@ if(webContent && loading){setLoading(false)}
                     Selecciona un elemento interactivo para editar su contenido (La imagen de 'Banner' no es desplegada en dispositivos menores a 1015px).
                   </h5>
 
+                  {/**Esto se puede mapear webContent.ma((c) => blabla) }
                   {/**Bloque de Banner**/}
                     <Block sectionEdit={sectionEdit} blockValues={webContent.primary} editSection={editSection} />
-
-                    {/*<Block sectionEdit={sectionEdit} blockValues={webContent.secondary} editSection={editSection} />*/}
 
                   {/**Bloque de Features**/}
                     <Block sectionEdit={sectionEdit} blockValues={webContent.secondary} editSection={editSection} />
 
+                  {/*Bloque Team*/}
+                    <Block sectionEdit={sectionEdit} blockValues={webContent.third} editSection={editSection} />
 
-                    <div className="ribbon-1 bg-gray-700 border-blue-300 mt-6 mb-1">
-                      <h5 className="absolute text-2md tracking-tight text-white mt-1.5 ml-6 flex justify-between ">
-                        Team
-                      </h5>
-                    </div>
-
-                    <div className="flex justify-center items-center w-full p-3">
-                        <div className="flex flex-col justify-center items-center w-full rounded-xl border-4 border-gray-700 border-dashed cursor-pointer">
-                          <div className="flex flex-row items-center pb-3 px-5 justify-center w-full">
-                          <div role="status" className="md:w-full w-full justify-center items-center sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center mt-6">
-
-                                <div className="w-full items-center">
-                                  <div className="mt-9 flex justify-center">
-                                      <div className="h-4 bg-gray-200 hover:bg-green-700 rounded-full dark:bg-gray-700 w-2/4 mb-4"></div>
-                                  </div>
-                                  <div className="mt-1 flex flex-col items-center">
-                                      <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-3/4 mb-2.5"></div>
-                                      <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-3/4 mb-2.5"></div>
-                                  </div>
-
-                                  <div className='flex w-full justify-center flex-col  md:flex-row sm:flex-col items-center mt-3'>
-
-                                      <div role="status" className="w-full justify-center m-2 p-4 flex rounded border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
-                                        <div className="md:w-full w-full sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center">
-
-                                          <div role="status" className="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:items-center">
-                                            <div className="flex justify-center hover:bg-blue-600 items-center h-48 bg-gray-300 rounded  dark:bg-gray-700">
-                                                <svg className="mr-2 w-14 h-14 text-gray-200" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path></svg>
-                                            </div>
-                                          </div>
-
-                                          <div className="w-full">
-                                            <div className="mt-1">
-                                                <div className="h-4 bg-gray-200 hover:bg-green-700 rounded-full dark:bg-gray-700 w-3/4 mb-4"></div>
-                                                <div className="h-3 hover:bg-yellow-400 bg-gray-200 rounded-full dark:bg-gray-700 w-1/4 mb-2.5"></div>
-                                            </div>
-                                            <div className="mt-6">
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                            </div>
-                                            <div className="flex items-center space-x-2 w-2/3 mt-6">
-                                                  <div className="h-9 hover:bg-blue-900 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-blue-300 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-white bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-purple-700 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                            </div>
-                                           </div>
-
-                                        </div>
-                                      </div>
-
-                                      <div role="status" className="w-full justify-center m-2 p-4 flex rounded border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
-                                        <div className="md:w-full w-full sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center">
-
-                                          <div role="status" className="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:items-center">
-                                            <div className="flex justify-center hover:bg-blue-600 items-center h-48 bg-gray-300 rounded  dark:bg-gray-700">
-                                                <svg className="mr-2 w-14 h-14 text-gray-200" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path></svg>
-                                            </div>
-                                          </div>
-
-                                          <div className="w-full">
-                                            <div className="mt-1">
-                                                <div className="h-4 bg-gray-200 hover:bg-green-700 rounded-full dark:bg-gray-700 w-3/4 mb-4"></div>
-                                                <div className="h-3 hover:bg-yellow-400 bg-gray-200 rounded-full dark:bg-gray-700 w-1/4 mb-2.5"></div>
-                                            </div>
-                                            <div className="mt-6">
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                            </div>
-                                            <div className="flex items-center space-x-2 w-2/3 mt-6">
-                                                  <div className="h-9 hover:bg-blue-900 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-blue-300 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-white bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-purple-700 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                            </div>
-                                           </div>
-
-                                        </div>
-                                      </div>
-
-                                  </div>
-
-                                  <div className='flex w-full justify-center flex-col  md:flex-row sm:flex-col items-center mt-3'>
-
-                                      <div role="status" className="w-full justify-center m-2 p-4 flex rounded border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
-                                        <div className="md:w-full w-full sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center">
-
-                                          <div role="status" className="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:items-center">
-                                            <div className="flex justify-center hover:bg-blue-600 items-center h-48 bg-gray-300 rounded  dark:bg-gray-700">
-                                                <svg className="mr-2 w-14 h-14 text-gray-200" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path></svg>
-                                            </div>
-                                          </div>
-
-                                          <div className="w-full">
-                                            <div className="mt-1">
-                                                <div className="h-4 bg-gray-200 hover:bg-green-700 rounded-full dark:bg-gray-700 w-3/4 mb-4"></div>
-                                                <div className="h-3 hover:bg-yellow-400 bg-gray-200 rounded-full dark:bg-gray-700 w-1/4 mb-2.5"></div>
-                                            </div>
-                                            <div className="mt-6">
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                            </div>
-                                            <div className="flex items-center space-x-2 w-2/3 mt-6">
-                                                  <div className="h-9 hover:bg-blue-900 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-blue-300 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-white bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-purple-700 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                            </div>
-                                           </div>
-
-                                        </div>
-                                      </div>
-
-                                      <div role="status" className="w-full justify-center m-2 p-4 flex rounded border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
-                                        <div className="md:w-full w-full sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center">
-
-                                          <div role="status" className="w-full space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:items-center">
-                                            <div className="flex justify-center hover:bg-blue-600 items-center h-48 bg-gray-300 rounded  dark:bg-gray-700">
-                                                <svg className="mr-2 w-14 h-14 text-gray-200" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd"></path></svg>
-                                            </div>
-                                          </div>
-
-                                          <div className="w-full">
-                                            <div className="mt-1">
-                                                <div className="h-4 bg-gray-200 hover:bg-green-700 rounded-full dark:bg-gray-700 w-3/4 mb-4"></div>
-                                                <div className="h-3 hover:bg-yellow-400 bg-gray-200 rounded-full dark:bg-gray-700 w-1/4 mb-2.5"></div>
-                                            </div>
-                                            <div className="mt-6">
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                                <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                            </div>
-                                            <div className="flex items-center space-x-2 w-2/3 mt-6">
-                                                  <div className="h-9 hover:bg-blue-900 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-blue-300 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-white bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                                  <div className="h-9 hover:bg-purple-700 bg-gray-200 rounded-full dark:bg-gray-700 w-10"></div>
-                                            </div>
-                                           </div>
-
-                                        </div>
-                                      </div>
-
-                                  </div>
-
-                                 </div>
-
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-
-                    <div className="ribbon-1 bg-gray-700 border-blue-300 mt-6 mb-1">
-                      <h5 className="absolute text-2md tracking-tight text-white mt-1.5 ml-6 flex justify-between ">
-                        Newsletter
-                      </h5>
-                    </div>
-
-                    <div className="flex justify-center items-center w-full p-3">
-                        <div  className="flex flex-col justify-center items-center w-full rounded-xl border-4 border-gray-700 border-dashed cursor-pointer">
-                          <div className="flex flex-row items-center pb-10 px-5 justify-center w-full">
-
-                              <div role="status" className="lg:w-4/5 md:w-full items-center justify-center sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center mt-6">
-
-                                <div className="w-full  justify-center items-center">
-                                  <div className="mt-9 flex justify-center items-center">
-                                      <div className="h-4 bg-gray-200 justify-center items-center hover:bg-green-700 rounded-full dark:bg-gray-700 w-3/4 mb-4"></div>
-                                  </div>
-                                  <div className="flex justify-center flex-col items-center">
-                                      <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                                      <div className="h-2 hover:bg-red-700 bg-gray-200 rounded-full dark:bg-gray-700 w-3/4 mb-2.5"></div>
-                                  </div>
-                                  <div className="flex justify-center items-center items-center space-x-1 w-full mt-6">
-                                        <div className="h-6 hover:bg-yellow-400 bg-gray-200 rounded-l-lg dark:bg-gray-700 w-2/4"></div>
-                                        <div className="h-6 hover:bg-purple-700 bg-gray-200 rounded-r-lg dark:bg-gray-700 w-20"></div>
-                                  </div>
-                                  <div className="flex justify-center flex-row items-center mt-1 space-x-1">
-                                      <div className="h-1.5 hover:bg-orange-500 bg-gray-200 rounded-full dark:bg-gray-700 w-1/4 mb-2.5"></div>
-                                      <div className="h-1.5 hover:bg-cyan-400 bg-gray-200 rounded-full dark:bg-gray-700 w-1/6 mb-2.5"></div>
-                                  </div>
-                                 </div>
-
-
-                              </div>
-
-                          </div>
-                        </div>
-                    </div>
+                  {/*Bloque Newsletter*/}
+                    <Block sectionEdit={sectionEdit} blockValues={webContent.newsletter} editSection={editSection} />
 
                 </div>
             </div>
 
+            {/*Esta seccion puede servir como panel derecho (solo maquetado)*/}
             {/*<div className='carTest1 w-full md:w-3/6' >
                 <div  className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" style={{minHeight:'100%'}}>
                   <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mt-4 ml-6 flex justify-between ">
@@ -486,7 +198,7 @@ if(webContent && loading){setLoading(false)}
 
           </div>
         </div>
-        <div id='contentthree' className='flex flex-col md:flex-row justify-center'>
+        {/*<div id='contentthree' className='flex flex-col md:flex-row justify-center'>
           <div className='carTest1 md:w-full'>
             <Card className='' style={{minHeight:'190px'}}>
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -512,17 +224,10 @@ if(webContent && loading){setLoading(false)}
               </Button>
             </Card>
           </div>
-        </div>
+        </div>*/}
       </div>
-
-        {/*<ModalTitle showModalTitle={showModalTitle} modalValues={modalTitleBannerValues} />*/}
-        {/*<ModalDescription showModalDescriptionBanner={showModalDescriptionBanner} />*/}
-
       </>
     }
-
-
-
     </div>
   )
 }

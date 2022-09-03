@@ -5,7 +5,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import RecoverPassword from './pages/RecoverPassword'
+//import RecoverPassword from './pages/RecoverPassword'
 import UserPanel from './pages/UserPanel'
 import CPanel from './pages/CPanel'
 import Settings from './pages/Settings'
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App bg-slate-200 dark:bg-gray-900 p-2" >
-    <AlertContextProvider>
+      <AlertContextProvider>
       <div className='navegacion'>
         <Navegacion categorias={categorias} />
       </div>

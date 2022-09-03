@@ -1,7 +1,7 @@
 # Cpanel
 
 Administración de usuarios y modificación de contenido de Frontend desde Cpanel.\
-Repositorio de [API](http://#)\
+Repositorio de [API](http://#)
 
 - React
 - react-router-dom

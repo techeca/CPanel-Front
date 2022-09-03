@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Loading from '../../components/Loading'
 import { Card, Button } from 'flowbite-react'
-import flowbite from 'flowbite'
-import { ChartPieIcon, ViewBoardsIcon, InboxIcon, UserIcon, ShoppingBagIcon, ArrowSmRightIcon, TableIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline'
 import useAuth from '../../hooks/useAuth'
-import useAlert from '../../hooks/useAlert'
+//import useAlert from '../../hooks/useAlert'
 
 export default function UserPanel(){
   let navigation = useNavigate()
-  const {isLogged, isLoading} = useAuth()
-  const [loading, setLoading] = useState(true)
-  const { setMessage } = useAlert()
+  const {isLogged} = useAuth()
+  //const [loading, setLoading] = useState(true)
+  //const { setMessage } = useAlert()
 
   function showDropdowUserCard(){
     const targetEl = document.getElementById('dropdown');
@@ -27,9 +25,11 @@ export default function UserPanel(){
     }
   }, [isLogged, navigation])
 
+
+
   return (
     <>
-    {!isLogged && loading ?
+    {!isLogged ?
       <Loading w={10} h={10} />
       :
       <div style={{marginTop:'12px', marginLeft:'8px'}}>
@@ -49,24 +49,24 @@ export default function UserPanel(){
                         <div id="dropdown" className="hidden absolute z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                             <ul className="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Change image</a>
+                                <a href="/" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Change image</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit profile</a>
+                                <a href="/" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit profile</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">blablabla</a>
+                                <a href="/" className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">blablabla</a>
                             </li>
                             </ul>
                         </div>
                     </div>
                     <div className="flex flex-col items-center pb-10">
-                        <img className="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+                        <img className="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="other Bonnie" />
                         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
                         <div className="flex pt-8 space-x-3 md:mt-6">
-                            <a href="#" className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check Details</a>
-                            <a href="#" className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>
+                            <a href="/" className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check Details</a>
+                            <a href="/" className="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>
                         </div>
                     </div>
                 </div>
@@ -74,11 +74,11 @@ export default function UserPanel(){
             <div className='carTest1 md:w-full sm:w-full' style={{display:'flex', flexDirection:'column', justifyContent:'space-around'}} >
               <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <svg className="mb-2 w-7 h-7 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clipRule="evenodd"></path><path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path></svg>
-                <a href="#">
+                <a href="/">
                     <h5 className="mb-2 text-2md font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                 </a>
                 <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                <a href="#" className="inline-flex items-center text-blue-600 hover:underline">
+                <a href="/" className="inline-flex items-center text-blue-600 hover:underline">
                     See our guideline
                     <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
                 </a>
@@ -86,10 +86,10 @@ export default function UserPanel(){
 
               <div className="p-4 mt-2 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <svg className="mb-2 w-7 h-7 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clipRule="evenodd"></path><path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path></svg>
-                <a href="#">
+                <a href="/">
                     <h5 className="mb-2 text-2md font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5>
                 </a>
-                <a href="#" className="inline-flex items-center text-blue-600 hover:underline">
+                <a href="/" className="inline-flex items-center text-blue-600 hover:underline">
                     See our guideline
                     <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
                 </a>
@@ -102,7 +102,7 @@ export default function UserPanel(){
           <div className="p-4 w-full bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
               <div className="flex justify-between items-center mb-4">
                   <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Customers</h5>
-                  <a href="#" className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                  <a href="/" className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                       View all
                   </a>
              </div>

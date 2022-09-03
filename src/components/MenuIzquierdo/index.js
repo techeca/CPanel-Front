@@ -12,29 +12,32 @@ export default function MenuIzquierdo({sideCategorias}){
   //const testele = document.querySelector('[aria-label="cpanel-sidebar"]')
   //console.log()
 
-  /*window.addEventListener('resize', function(event){
+  window.addEventListener('resize', function(event){
       let newWidth = window.innerWidth;
       //var newHeight = window.innerHeight;
-      if(newWidth < 1160 && sidebarAbierto){
+      if(newWidth < 1215 && sidebarAbierto){
         esconderSidebar()
       }
-      if(newWidth > 1161 && !sidebarAbierto){
+      if(newWidth > 1216 && !sidebarAbierto){
         esconderSidebar()
       }
-  });*/
+  });
 
   function esconderSidebar(){
     //const sidebarContainer = document.querySelector('[aria-label="cpanel-sidebar"]') ? document.querySelector('[aria-label="cpanel-sidebar"]') : false
+    const btnSidebar = document.getElementById('btn-sidebar');
     const sidebarContainer = document.getElementById('testDraw');
     if(sidebarAbierto && sidebarContainer){
       sidebarContainer.style.width = '50px';
       //sidebarContainer.classList.add('closeMenuCpanel')
       //sidebarContainer.classList.remove('openMenuCpanel')
       //sidebarContainer.classList.add('hidden');
+      btnSidebar.classList.add('hidden')
       setSidebarAbierto(false)
     }
     if(!sidebarAbierto && sidebarContainer) {
       sidebarContainer.style.width = '256px';
+      btnSidebar.classList.remove('hidden')
       //sidebarContainer.classList.add('openMenuCpanel')
       //sidebarContainer.classList.remove('closeMenuCpanel')
       setSidebarAbierto(true)
@@ -104,7 +107,7 @@ export default function MenuIzquierdo({sideCategorias}){
 
 
   return(
-    <div  className="w-fit h-auto">
+    <div className="w-fit h-auto pl-2 pt-3">
     <aside id='testDraw' className='w-64' aria-label="cpanel-sidebar">
        <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800" style={{overflow:'hidden'}}>
           <ul className="space-y-2">
@@ -155,10 +158,15 @@ export default function MenuIzquierdo({sideCategorias}){
                 </a>
              </li>*/}
           </ul>
-          <div className='minSidebar mt-3'>
-            <Button onClick={esconderSidebar} outline={false} className='h-1 w-1' style={{width:`${sidebarAbierto ? '' : '25px'}`}}>
-              {sidebarAbierto ? <ArrowLeftIcon className='h-3 w-3'/> : <ArrowRightIcon className='h-3 w-3'/>}
-            </Button>
+          <div id='btn-sidebar' className='minSidebar mt-3'>
+            {sidebarAbierto ?
+              <Button onClick={esconderSidebar} outline={false} className='h-1 w-1' style={{width:`${sidebarAbierto ? '' : '25px'}`}}>
+                {sidebarAbierto ? <ArrowLeftIcon className='h-3 w-3'/> : <ArrowRightIcon className='h-3 w-3'/>}
+              </Button>
+              :
+              <></>
+            }
+
           </div>
        </div>
     </aside>

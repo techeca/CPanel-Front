@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import InputF from '../../components/InputF'
 import BtnF from '../../components/BtnF'
-import Loading from '../../components/Loading'
 import CheckBoxF from '../../components/CheckBoxF'
 import { userService } from '../../services'
-import AlertF from '../../components/AlertF'
 import useAlert from '../../hooks/useAlert'
 import ModalTermsOfService from './ModalTermsOfService'
 
 export default function FormRegister({fr}){
   let navigate = useNavigate();
-  const { showAlert, setMessage } = useAlert();
+  const { setMessage } = useAlert();
   const [emailUser, setEmailUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
   const [repasswordUser, setRepasswordUser] = useState('')
@@ -46,7 +44,9 @@ export default function FormRegister({fr}){
 
   function emailValidation(e){
     //Correct format email??
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
+    //aqui manda error de \ innecesario, probar
+    //anterior /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
         setEmailUser('succes')
       }else {
         setEmailUser('error')
@@ -115,7 +115,7 @@ export default function FormRegister({fr}){
   }
 
   return(  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            
+
               <ModalTermsOfService show={showTerm} />
 
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

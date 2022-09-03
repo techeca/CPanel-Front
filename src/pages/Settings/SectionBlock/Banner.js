@@ -15,9 +15,9 @@ export default function Banner({sectionEdit, bannerValues, showModal, edit}){
           <button type="button" onClick={() => edit(bannerValues.section)} className={`mt-[15px] text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}>
             Edit
           </button>
-          <button type="button" onClick={() => edit(bannerValues.section)} className={`mt-[15px] text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}>
+          {/*<button type="button" onClick={() => edit(bannerValues.section)} className={`mt-[15px] text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}>
             Save
-          </button>
+          </button>*/}
         </div>
 
             <div role="status" className="lg:w-4/5 mb-[9px] md:w-full sm:w-full space-y-8 animate-pulse sm:space-y-0 sm:space-x-8 sm:flex sm:items-center">

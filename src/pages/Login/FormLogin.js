@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BtnF from '../../components/BtnF'
 import { Link, useNavigate } from 'react-router-dom'
 import { userService } from '../../services'
@@ -9,7 +9,7 @@ export default function FormLogin(){
     let navigate = useNavigate()
     const { setMessage } = useAlert()
     const { setIsLogged } = useAuth()
-    const [loading, setLoading] = useState(true)
+    //const [loading, setLoading] = useState(true)
 
     const handleSubmit = async (e) => {
       e.preventDefault()
@@ -58,7 +58,7 @@ export default function FormLogin(){
                           <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                         </div>
                     </div>
-                    <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                    <a href="/" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                 </div>
                 <div style={{display:'flex', justifyContent:'center'}}>
                   <BtnF bt={'Sign up'} type={'submit'} />

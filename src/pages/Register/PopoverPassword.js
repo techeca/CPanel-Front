@@ -2,16 +2,8 @@ import React from 'react'
 
 export default function PopoverPassword({vpass}){
 
-  function hidepop(){
-    console.log('lost focus')
-    const popoverPass = document.getElementById('popover-password')
-    popoverPass.classList.add('z-10')
-    popoverPass.classList.add('invisible')
-    popoverPass.style.opacity = 0
-  }
-
   return(
-    <div id="popover-password" onBlur={hidepop} role="tooltip" className="mt-3 absolute invisible z-10 w-72 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+    <div id="popover-password" role="tooltip" className="mt-3 absolute invisible z-10 w-72 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
 
           <div className='spArrow absolute left-1/2' data-popper-arrow style={{marginTop:'-5px', border:'1px 0px 0px 1px solid #4B5563', borderWidth:'1px'}}></div>
            <div className="p-3 space-y-2">

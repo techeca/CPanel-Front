@@ -1,7 +1,7 @@
 //import getConfig from 'next/config';
 import { userService } from '../services';
 
-const URL_API = {apiUrl:'http://localhost:3001'};
+export const URL_API = {apiUrl:'http://192.168.0.8:3001'};
 
 export const fetchWrapper = {
   get,

@@ -3,7 +3,7 @@ import FormDescription from '../Forms/FormDescription'
 
 export default function DrawerDescription({showModal, modalValues, section, dwd}){
   //console.log(modalValues)
-  console.log(`drawer-${modalValues.typeElement}-${section}${typeof i === 'number' ? `-${dwd}` : ''}`)
+  //console.log(`drawer-${modalValues.typeElement}-${section}${typeof i === 'number' ? `-${dwd}` : ''}`)
   return(
     <>
     <div id={`drawer-${modalValues.typeElement}-${section}${typeof dwd === 'number' ? `-${dwd}` : ''}`} className="left-[-320px] top-0 z-40 fixed h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800" tabIndex="-1" >

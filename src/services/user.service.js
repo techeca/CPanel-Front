@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { fetchWrapper } from '../helpers';
+import { fetchWrapper, URL_API } from '../helpers';
 
-const baseUrl = `http://localhost:3001/api/user`;
+const baseUrl = `${URL_API.apiUrl}/api/user`;
 const userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')));
 
 export const userService = {
@@ -33,5 +33,4 @@ function login(email, password) {
 function logout(){
   localStorage.removeItem('user');
   userSubject.next(null);
-  //navigate('/login');
 }

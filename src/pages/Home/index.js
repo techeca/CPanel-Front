@@ -10,10 +10,6 @@ export default function Home(){
   const [homeContent, setHomeContent] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  function startHome(){
-    contentService.getContentHome().then(res => setHomeContent(res))
-  }
-
   useEffect(() => {
     contentService.getContentHome()
       .then(res => setHomeContent(res))
