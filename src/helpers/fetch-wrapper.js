@@ -1,7 +1,9 @@
 //import getConfig from 'next/config';
 import { userService } from '../services';
 
-export const URL_API = {apiUrl:'http://192.168.0.8:3001'};
+//API HOST
+//Moverla, (pero no se a donde)  
+export const URL_API = {apiUrl:'http://localhost:3001'};
 
 export const fetchWrapper = {
   get,

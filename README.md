@@ -1,14 +1,17 @@
 # Cpanel
 
 Administración de usuarios y modificación de contenido de Frontend desde Cpanel.\
-Repositorio de [API](http://#)
+Repositorio de [API](https://github.com/techeca/API_Cpanel)
 
 - React
 - react-router-dom
 - react-hook-form
 - yup
 - tailwindCSS
+-
 - Flowbite
+
+Autorización con JSON Web Token (podría cambiar a Auth0)
 
 ## Available Scripts
 
