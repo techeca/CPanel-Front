@@ -24,7 +24,7 @@ export default function CPanel(){
   }, [])
 
   if(isLogged && loading){setLoading(false)}
-  console.log(webStats)
+  //console.log(webStats)
 
   return (
     <>

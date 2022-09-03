@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom'
 
 export default function MenuIzquierdo({sideCategorias}){
   const [sidebarAbierto, setSidebarAbierto] = useState(true)
-  let viewportWidth;
+  let viewportWidth = window.screen.width;
   const {isLogged, isLoading} = useAuth()
   //const testele = document.querySelector('[aria-label="cpanel-sidebar"]')
-  //console.log()
+  //console.log(window.innerWidth)
 
   window.addEventListener('resize', function(event){
       let newWidth = window.innerWidth;
@@ -103,6 +103,7 @@ export default function MenuIzquierdo({sideCategorias}){
     if(!isLogged) {
       //noSidebar()
     }
+    esconderSidebar()
   }, [isLogged])
 
 

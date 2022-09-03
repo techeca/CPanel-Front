@@ -32,7 +32,7 @@ export default function Block({sectionEdit, blockValues, editSection}){
   //const testfragmento = <Banner sectionEdit={sectionEdit} bannerValues={blockValues} showModal={showModal} />
 
   function showModal(type, section, i){
-    console.log(`drawer-${type}-${section}${typeof i === 'number' ? `-${i}` : ''}`)
+    //console.log(`drawer-${type}-${section}${typeof i === 'number' ? `-${i}` : ''}`)
     //Cuando se realiza map a un componente se envia index o numero único para generar id
     const targetEl = document.getElementById(`drawer-${type}-${section}${typeof i === 'number' ? `-${i}` : ''}`);
     const blocker = document.getElementById('contentBlocker');
